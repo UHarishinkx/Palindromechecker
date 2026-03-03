@@ -1,32 +1,16 @@
-import java.util.*;
-
 public class PalindromeChecker {
 
-    static boolean stackStrategy(String input) {
+    static boolean checkPalindrome(String input) {
 
-        Stack<Character> stack = new Stack<>();
+        int start = 0;
+        int end = input.length() - 1;
 
-        for (char c : input.toCharArray())
-            stack.push(c);
-
-        for (char c : input.toCharArray())
-            if (c != stack.pop())
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end))
                 return false;
-
-        return true;
-    }
-
-    static boolean dequeStrategy(String input) {
-
-        Deque<Character> deque = new ArrayDeque<>();
-
-        for (char c : input.toCharArray())
-            deque.add(c);
-
-        while (deque.size() > 1)
-            if (deque.removeFirst() != deque.removeLast())
-                return false;
-
+            start++;
+            end--;
+        }
         return true;
     }
 
@@ -34,11 +18,14 @@ public class PalindromeChecker {
 
         String input = "level";
 
-        // Choose one strategy
-        boolean result = stackStrategy(input);
-        // boolean result = dequeStrategy(input);
+        long startTime = System.nanoTime();
+
+        boolean result = checkPalindrome(input);
+
+        long endTime = System.nanoTime();
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + (endTime - startTime) + " ns");
     }
 }
