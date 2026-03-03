@@ -1,20 +1,27 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    String input = "A man a plan a canal Panama";
+public class PalindromeChecker {
 
-    String normalized = input.replaceAll("[^a-zA-Z]", "").toLowerCase();
+    static boolean checkPalindrome(String input) {
 
-    boolean isPalindrome = true;
+        int start = 0;
+        int end = input.length() - 1;
 
-    for(int i=0;i<normalized.length()/2;i++){
-        if(normalized.charAt(i) !=
-                normalized.charAt(normalized.length()-1-i)){
-            isPalindrome = false;
-            break;
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
         }
+        return true;
     }
 
-    System.out.println("Input : " + input);
-    System.out.println("Is Palindrome? : " + isPalindrome);
+    public static void main(String[] args) {
+
+        String input = "level";
+
+        boolean result = checkPalindrome(input);
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
 }
